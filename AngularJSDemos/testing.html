@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+<title>Angular JS - programming-free.com</title>
+<link href="https://dl.dropbox.com/u/96099766/DetailModalExample/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+        src="lib/angularjs.min.js"></script>
+</head>
+<body>
+<div ng-controller="AppController" style="text-align:center">
+	<h2>AngularJS Services - Calculate Total Cost from Quantity</h2>
+	{{ dataSet }}
+</div>
+<script type="text/javascript">
+angular.module('myApp.service',[]).
+    factory('DataSource', ['$http',function($http){
+       return {
+           get: function(callback){
+                $http.get(
+                    'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml',
+                    {transformResponse:function(data) {
+                      // convert the data to JSON and provide
+                      // it to the success function below
+					  alert('hello');
+                        var x2js = new X2JS();
+                        var json = x2js.xml_str2json( data );
+                        return json;
+						console.log(data);
+                        }
+                    }
+                ).
+                success(function(data, status) {
+                    // send the converted data back
+                    // to the callback function
+                    callback(data);
+                })
+           }
+       }
+    }]);
+     
+angular.module('myApp',['myApp.service']);
+ 
+var AppController = function($scope,DataSource) {
+     
+    //This is the callback function
+    setData = function(data) {
+        $scope.dataSet = data;
+    }
+         
+    DataSource.get(setData);
+     
+}
+</script>
+</body>
+</html>

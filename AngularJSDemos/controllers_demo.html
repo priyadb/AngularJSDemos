@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="myFirstModule">
+<head>
+<title>Understanding Controllers in AngularJS - programming-free.com</title>
+<link href="https://dl.dropbox.com/u/96099766/DetailModalExample/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+        src="lib/angularjs.min.js"></script>
+</head>
+<body>
+<div ng-controller="myFirstController" style="text-align:center">
+	<h1>AngularJS Controllers - Calculate Total Cost from Quantity</h1>
+	<p style="text-align:center;">Demo by Priya Darshini - Tutorial @ <a href="javascript:parent.window.location.href='http://www.programming-free.com/2013/10/understanding-controllers-in-angularjs.html'">Programmingfree</a></p> 
+     <p style="font-size:28px;">Enter Quantity:
+	<input type="text" ng-model="quantity" style="width:20px;font-size:28px;height:30px;"/></p>
+	<button ng-click="calculate(quantity,10)" class="btn btn-info">Calculate</button> 
+	<h2>Total Cost: ${{price}}</h2>
+</div>
+<script type="text/javascript">
+	var myFirstModule = angular.module('myFirstModule', []);
+    myFirstModule.controller('myFirstController', function($scope) {
+		$scope.quantity=1;
+		$scope.price=10;	
+		$scope.calculate = function(xval,yval) {                       
+			$scope.price=xval*yval
+		}
+    });
+</script>
+</body>
+</html>

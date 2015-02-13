@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html ng-app="filterModule">
+<head>
+<title>Understanding Controllers in AngularJS - programming-free.com</title>
+<link href="https://dl.dropbox.com/u/96099766/DetailModalExample/bootstrap.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript"
+        src="lib/angularjs.min.js"></script>
+<script type="text/javascript"
+        src="lib/jquery-1.8.2.js"></script>		
+<script type="text/javascript"
+        src="lib/bootstrap.min.js"></script>
+</head>
+<body>
+<div ng-controller="FilterController" style="text-align:center;width:70%;margin:auto">
+	<h1>Exploring AngularJS Built-in Filters</h1>
+	<p style="text-align:center;">Demo by Priya Darshini - Tutorial @ <a href="javascript:parent.window.location.href='http://www.programming-free.com/2013/10/exploring-angularjs-built-in-filters.html'">Programmingfree</a></p>      
+	<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a  style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter1">
+        <h4>orderBy Filter</h4>
+      </a>
+    </div>
+    <div id="filter1" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<table class="table table-hover table-bordered table-striped">
+		<thead>
+		<th>Name</th>
+		<th>Designation</th>
+		</thead>
+		<tbody>
+		<tr ng-repeat="employee in employees | orderBy:'name'">
+		<td>{{employee.name}}</td>
+		<td>{{employee.designation}}</td>
+		</tr>
+		</tbody>
+		</table>
+		<br/>
+		<img src="img/angularjs_filters_1.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter2">
+        <h4>limitTo Filter</h4>
+      </a>
+    </div>
+    <div id="filter2" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center;">
+		<table class="table table-hover table-bordered table-striped">
+		<thead>
+		<th>Name</th>
+		<th>Designation</th>
+		</thead>
+		<tbody>
+		<tr ng-repeat="employee in employees | limitTo:5">
+		<td>{{employee.name}}</td>
+		<td>{{employee.designation}}</td>
+		</tr>
+		</tbody>
+		</table>
+		<br/>
+		<img src="img/angularjs_filters_2.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter3">
+        <h4>lowercase and uppercase Filter</h4>
+      </a>
+    </div>
+    <div id="filter3" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<table class="table table-hover table-bordered table-striped">
+		<thead>
+		<th>Name</th>
+		<th>Designation</th>
+		</thead>
+		<tbody>
+		<tr ng-repeat="employee in employees">
+		<td>{{employee.name | uppercase}}</td>
+		<td>{{employee.designation | lowercase}}</td>
+		</tr>
+		</tbody>
+		</table>
+		<img src="img/angularjs_filters_3.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter4">
+        <h4>search Filter</h4>
+      </a>
+    </div>
+    <div id="filter4" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<p style="float:left;text-align:left;">Search: <input type="text" ng-model="searchText"/></p>
+		<br/>
+		<table class="table table-hover table-bordered table-striped">
+		<thead>
+		<th>Name</th>
+		<th>Designation</th>
+		</thead>
+		<tbody>
+		<tr ng-repeat="employee in employees | filter:searchText">
+		<td>{{employee.name}}</td>
+		<td>{{employee.designation}}</td>
+		</tr>
+		</tbody>
+		</table>
+		<br/>			
+		<img src="img/angularjs_filters_4.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter5">
+        <h4>currency Filter</h4>
+      </a>
+    </div>
+    <div id="filter5" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<p style="text-align:left;">Enter Amount: <input type="text" ng-model="amount"/></p>
+		<br/>
+		<p style="text-align:left;">Amount with default currency <span style="color:red">{{amount | currency}}</span></p><br/>
+		<p style="text-align:left;">Amount with Indian currency <span style="color:red">{{amount | currency: "Rs."}}</span></p>
+		<br/>			
+		<img src="img/angularjs_filters_5.png"/>
+	</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter6">
+        <h4>number Filter</h4>
+      </a>
+    </div>
+    <div id="filter6" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<p style="text-align:left;">Enter Number: <input type="text" ng-model="number"/></p>
+		<h5 style="text-align:left;">Rounded number with no decimal places: <span style="color:red">{{number | number:0}}</span></h5>
+		<h5 style="text-align:left;">Number with 4 decimal places <span style="color:red">{{number | number:4}}</span></h5>
+		<br/>			
+		<img src="img/angularjs_filters_6.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+    <div class="accordion-group">
+    <div class="accordion-heading">
+      <a style="text-align:left;" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#filter7">
+        <h4>date Filter</h4>
+      </a>
+    </div>
+    <div id="filter7" class="accordion-body collapse">
+      <div class="accordion-inner">
+        <div class="filterDemos" style="text-align:center">
+		<h5 style="float:left">Format equivalent to 'M/d/yy h:mm a' for en_US locale  <span style="color:red">{{ 1288323623006 | date:'short'}}</span></h5><br/>
+		<h5 style="float:left">Format equivalent to 'MM/dd/yyyy @ h:mma' <span style="color:red">{{ 1288323623006 | date:'MM/dd/yyyy @ h:mma'}}</span></h5>
+		<br/>
+		<img src="img/angularjs_filters_7.png"/>
+		<br/>
+	</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<script type="text/javascript">
+	var filterModule = angular.module('filterModule', []);
+    filterModule.controller('FilterController', function($scope) {
+		$scope.amount='100';
+		$scope.number='1234.5678';
+		$scope.employees=[{ name:'Priya',designation:'Manager'},
+		                  { name:'Naveen',designation:'Tester'},
+						  {	name:'Anita',designation:'Programmer'},
+						  {	name:'Mike',designation:'BA'},
+						  {	name:'John',designation:'Admin'},
+						  {	name:'Alice',designation:'Tester'},
+		                  {	name:'Gracia',designation:'Senior Manager'}];
+    });
+</script>
+</body>
+</html>
